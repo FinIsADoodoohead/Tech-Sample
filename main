@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCO Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ========================================
+           CSS STYLES - REFINED MINIMALIST
+           ======================================== */
+
+        :root {
+            --primary: #3A8DFF;
+            --primary-dark: #1960C9;
+            --bg-light: #fbfcfe;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto; 
+        }
+
+        /* --- Header Refinement --- */
+        header {
+            background-color: var(--glass);
+            padding: 18px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo-image {
+            height: 38px; 
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 120px 0;
+            background: radial-gradient(circle at top right, #f0f7ff 0%, #fbfcfe 100%);
+            text-align: center;
+        }
+        
+        .hero-icon-image {
+            height: 70px;
+            width: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 5px 15px rgba(58, 141, 255, 0.2));
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Buttons --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px; /* Pill shape */
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(58, 141, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 141, 255, 0.4);
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 100px 0;
+            background-color: #ffffff; 
+        }
+
+        .features h2 {
+            margin-bottom: 50px;
+            font-size: 2.2em;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            padding: 40px;
+            border-radius: 16px;
+            background-color: #ffffff; 
+            border: 1px solid #f0f0f0;
+            transition: all 0.4s ease;
+            text-align: left;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .feature-item i {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: #eef5ff;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Signup Banner --- */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            border-radius: 0;
+        }
+
+        .cta-section h2 { font-size: 2.5em; margin-bottom: 15px; }
+
+        .cta-section .cta-button {
+            background-color: white;
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .cta-section .cta-button:hover {
+            background-color: #f8f8f8;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #999;
+            padding: 40px 0;
+            font-size: 0.85em;
+        }
+
+        .social-links a {
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover { color: white; }
+
+        /* --- Back to Top --- */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: white;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1001;
+            border: 1px solid #eee;
+        }
+
+        #backToTop.show { opacity: 1; visibility: visible; }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4em; }
+            .hero { padding: 80px 0; }
+            .menu-btn { display: block; }
+            nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 30px;
+                border-bottom: 1px solid #eee;
+            }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; }
+            nav ul li { margin: 15px 0; margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="https://login.microsoftonline.com/" target="_self">
+                    <img src="logo-gco-connect.svg" alt="GCO Connect Logo" class="header-logo-image">
+                </a>
+            </div>
+            
+            <div class="menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav id="navLinks">
+                <ul>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#appointments">Appointments</a></li>
+                    <li><a href="#history">History</a></li>
+                    <li class="notification-icon">
+                        <a href="#notifications" title="Notifications"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="profile-icon">
+                        <a href="#profile" title="Profile"><i class="fas fa-user"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <img src="icon-gco-connect.svg" alt="GCO Connect Icon" class="hero-icon-image"> 
+            <h2>Guidance & Counseling</h2>
+            <h1>Connect with <span style="color:var(--primary)">Trusted Staff</span></h1>
+            <p>Enhance your experience at FEU in more ways than just academically. You don't have to be alone.</p>
+            <a href="https://login.microsoftonline.com/" class="cta-button">Access Portal</a>
+        </div>
+    </section>
+
+    <section id="booking" class="features">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="feature-grid">
+                <div class="feature-item" id="appointments">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Appointment Booking</h3>
+                    <p>Experience seamless scheduling for your counseling sessions with lightning-fast performance.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Schedule Tracking</h3>
+                    <p>Keep your journey organized. Your data is always safe with our robust security protocols.</p>
+                </div>
+                <div class="feature-item" id="history">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Personal Growth</h3>
+                    <p>Visualize your progress and milestones with insightful, confidential analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="signup" class="cta-section">
+        <div class="container">
+            <h2>Ready to take the next step?</h2>
+            <p>Get started today and walk firmly on the right path toward your goals.</p>
+            <br>
+            <a href="https://login.microsoftonline.com/" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Educational Innovation and Technology Hub. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" title="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
+    <script>
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('#navLinks ul li a');
+        const backToTopBtn = document.getElementById('backToTop');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling with Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId.startsWith("#profile") || targetId.startsWith("#notifications")) return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 90,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            // Back to Top Visibility
+            if (window.pageYOffset > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+
+            // Active Link Highlighting Logic
+            let current = "";
+            const sections = document.querySelectorAll('section'); 
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(a => {
+                a.classList.remove('active-link');
+                a.style.color = ""; 
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.style.color = "#3A8DFF"; 
+                }
+            });
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
